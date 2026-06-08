@@ -1,0 +1,17 @@
+export { SplashScreen } from './SplashScreen';
+export { OnboardingScreen } from './OnboardingScreen';
+export { HomeScreen } from './HomeScreen';
+export { ScenariosScreen } from './ScenariosScreen';
+export { WorkflowScreen } from './WorkflowScreen';
+export { DocumentsScreen } from './DocumentsScreen';
+export { StartNowScreen } from './StartNowScreen';
+export { DecisionTreeScreen } from './DecisionTreeScreen';
+export { TransferScreen } from './TransferScreen';
+export { FromAbroadScreen } from './FromAbroadScreen';
+export { DeathAbroadScreen } from './DeathAbroadScreen';
+export { JudicialScreen } from './JudicialScreen';
+export { AuthoritiesScreen } from './AuthoritiesScreen';
+export { FaqScreen } from './FaqScreen';
+export { SourcesScreen } from './SourcesScreen';
+export { SettingsScreen } from './SettingsScreen';
+export { MoreScreen } from './MoreScreen';

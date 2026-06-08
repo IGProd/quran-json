@@ -1,0 +1,216 @@
+import type { DocumentItem } from './types';
+
+/**
+ * Document catalogue. Each item is referenced by id from workflow steps,
+ * so the documents UI and the workflow UI stay in sync automatically.
+ *
+ * Content is a simplified civic guide. Exact wording of certificates and the
+ * issuing desk can differ between communes — the app always reminds the user
+ * to confirm with the competent local authority.
+ */
+export const documents: DocumentItem[] = [
+  // ── Medical ───────────────────────────────────────────────────────────
+  {
+    id: 'medical-cert',
+    name: 'شهادة طبية لإثبات الوفاة',
+    whenNeeded: 'فور التأكد من الوفاة',
+    issuedBy: 'الطبيب المعاين أو المؤسسة الصحية',
+    necessity: 'essential',
+    category: 'medical',
+    stage: 'confirm',
+    note: 'وثيقة أولى تثبت حدوث الوفاة وسببها الظاهر. بدونها لا يمكن إتمام التصريح بالوفاة لدى الحالة المدنية.',
+    icon: 'stethoscope',
+  },
+  {
+    id: 'non-contagion',
+    name: 'شهادة عدم الإصابة بمرض معدٍ',
+    whenNeeded: 'عند نقل الجثمان دوليًا',
+    issuedBy: 'الجهة الصحية المختصة',
+    necessity: 'conditional',
+    category: 'medical',
+    stage: 'consular',
+    note: 'مطلوبة غالبًا في حالات النقل الدولي للجثمان، لضمان سلامة النقل عبر الحدود.',
+    icon: 'shield-check',
+  },
+  // ── Personal ──────────────────────────────────────────────────────────
+  {
+    id: 'declarant-id',
+    name: 'بطاقة تعريف المُصرّح',
+    whenNeeded: 'عند التصريح بالوفاة',
+    issuedBy: 'المُصرّح (أحد الأقارب)',
+    necessity: 'essential',
+    category: 'personal',
+    stage: 'declare',
+    note: 'بطاقة التعريف الوطنية للشخص الذي يتولى التصريح بالوفاة لدى مكتب الحالة المدنية.',
+    icon: 'id-card',
+  },
+  {
+    id: 'deceased-id',
+    name: 'وثيقة تعريف المتوفى',
+    whenNeeded: 'عند التصريح بالوفاة',
+    issuedBy: 'المتوفى (سابقًا)',
+    necessity: 'essential',
+    category: 'personal',
+    stage: 'declare',
+    note: 'بطاقة التعريف الوطنية للمتوفى، أو ما يقوم مقامها لإثبات الهوية أمام الحالة المدنية.',
+    icon: 'id-card',
+  },
+  {
+    id: 'family-book',
+    name: 'دفتر الحالة المدنية (الكناش)',
+    whenNeeded: 'عند التصريح والتسجيل',
+    issuedBy: 'الحالة المدنية',
+    necessity: 'conditional',
+    category: 'personal',
+    stage: 'declare',
+    note: 'يُطلب غالبًا لتحيين الوضعية العائلية وتسجيل واقعة الوفاة. احرص على إحضاره إن كان متوفرًا.',
+    icon: 'book',
+  },
+  {
+    id: 'relationship-proof',
+    name: 'ما يثبت صلة القرابة',
+    whenNeeded: 'عند الحاجة لإثبات العلاقة',
+    issuedBy: 'الحالة المدنية / وثائق عائلية',
+    necessity: 'conditional',
+    category: 'personal',
+    stage: 'declare',
+    note: 'قد يُطلب لإثبات أن المُصرّح من ذوي المتوفى، خصوصًا في بعض الحالات الإدارية.',
+    icon: 'users',
+  },
+  // ── Administrative ────────────────────────────────────────────────────
+  {
+    id: 'death-record',
+    name: 'رسم الوفاة',
+    whenNeeded: 'بعد تسجيل الوفاة',
+    issuedBy: 'ضابط الحالة المدنية',
+    necessity: 'essential',
+    category: 'administrative',
+    stage: 'declare',
+    note: 'الوثيقة الرسمية التي تثبت تسجيل الوفاة في سجلات الحالة المدنية، وتُستخرج منها نسخ لاحقًا.',
+    icon: 'file-stamp',
+  },
+  {
+    id: 'burial-permit',
+    name: 'رخصة الدفن',
+    whenNeeded: 'قبل الدفن مباشرة',
+    issuedBy: 'الحالة المدنية / السلطة المحلية',
+    necessity: 'essential',
+    category: 'administrative',
+    stage: 'authorize',
+    note: 'إذن رسمي يسمح بإتمام الدفن. لا يتم الدفن عادةً قبل الحصول عليه بعد تسجيل الوفاة.',
+    icon: 'file-check',
+  },
+  // ── Transfer ──────────────────────────────────────────────────────────
+  {
+    id: 'transfer-permit',
+    name: 'رخصة نقل الجثمان',
+    whenNeeded: 'عند النقل خارج الجماعة',
+    issuedBy: 'السلطة المحلية المختصة',
+    necessity: 'conditional',
+    category: 'transfer',
+    stage: 'transfer',
+    note: 'مطلوبة عند نقل الجثمان من مكان الوفاة إلى جماعة أو إقليم آخر للدفن. تبدأ المسطرة عادةً من السلطة المحلية لمكان الوفاة.',
+    icon: 'truck',
+  },
+  {
+    id: 'coffin-record',
+    name: 'محضر وضع الجثمان في التابوت',
+    whenNeeded: 'في النقل الدولي والمسافات الطويلة',
+    issuedBy: 'الجهة المشرفة على التحضير',
+    necessity: 'conditional',
+    category: 'transfer',
+    stage: 'consular',
+    note: 'يوثّق وضع الجثمان وإغلاق التابوت وفق الشروط المطلوبة، ويُطلب غالبًا في النقل الدولي.',
+    icon: 'box',
+  },
+  {
+    id: 'mortuary-pass',
+    name: 'جواز مرور الجثمان',
+    whenNeeded: 'عند العبور بين الدول',
+    issuedBy: 'القنصلية / الجهة المختصة',
+    necessity: 'conditional',
+    category: 'transfer',
+    stage: 'consular',
+    note: 'وثيقة عبور تسمح بنقل الجثمان عبر الحدود حتى الوصول إلى وجهة الدفن.',
+    icon: 'route',
+  },
+  // ── Judicial ──────────────────────────────────────────────────────────
+  {
+    id: 'prosecutor-permit',
+    name: 'إذن النيابة العامة بالدفن',
+    whenNeeded: 'في الحالات غير الطبيعية',
+    issuedBy: 'النيابة العامة (وكيل الملك)',
+    necessity: 'conditional',
+    category: 'judicial',
+    stage: 'judicial',
+    note: 'في الوفيات غير الطبيعية أو المشتبه فيها، لا يُسمح بالدفن إلا بعد إذن النيابة العامة، وقد يسبقه إجراء طبي أو خبرة.',
+    icon: 'scale',
+  },
+  {
+    id: 'autopsy-report',
+    name: 'محضر المعاينة أو الخبرة الطبية',
+    whenNeeded: 'عند طلب النيابة العامة',
+    issuedBy: 'الجهة الطبية بأمر قضائي',
+    necessity: 'conditional',
+    category: 'judicial',
+    stage: 'judicial',
+    note: 'قد تأمر النيابة العامة بمعاينة أو خبرة طبية لتحديد سبب الوفاة قبل الإذن بمتابعة الإجراءات.',
+    icon: 'clipboard',
+  },
+  // ── Consular ──────────────────────────────────────────────────────────
+  {
+    id: 'foreign-death-cert',
+    name: 'وثيقة الوفاة الصادرة بالخارج',
+    whenNeeded: 'عند وفاة وقعت خارج المغرب',
+    issuedBy: 'السلطات المحلية ببلد الوفاة',
+    necessity: 'essential',
+    category: 'consular',
+    stage: 'consular',
+    note: 'الوثيقة الرسمية للوفاة الصادرة عن بلد وقوعها. قد تتطلب ترجمة وتصديقًا حسب الحالة.',
+    icon: 'globe',
+  },
+  {
+    id: 'consular-transport',
+    name: 'إذن نقل الجثمان عبر القنصلية',
+    whenNeeded: 'لإدخال الجثمان إلى المغرب',
+    issuedBy: 'القنصلية المغربية ببلد الوفاة',
+    necessity: 'conditional',
+    category: 'consular',
+    stage: 'consular',
+    note: 'تتولى القنصلية المغربية مرافقة مسطرة نقل الجثمان إلى المغرب وإعداد الوثائق اللازمة لذلك.',
+    icon: 'building',
+  },
+  {
+    id: 'consular-registration',
+    name: 'تسجيل الوفاة لدى القنصلية',
+    whenNeeded: 'لوفاة مغربي بالخارج',
+    issuedBy: 'القنصلية المغربية',
+    necessity: 'conditional',
+    category: 'consular',
+    stage: 'consular',
+    note: 'تُسجَّل وفاة المواطن المغربي الواقعة بالخارج لدى القنصلية، ثم تُضمَّن في سجلات الحالة المدنية بالمغرب.',
+    icon: 'building',
+  },
+];
+
+export const documentById = (id: string): DocumentItem | undefined =>
+  documents.find((d) => d.id === id);
+
+export const docCategoryLabels: Record<DocumentItem['category'], string> = {
+  personal: 'وثائق شخصية',
+  medical: 'وثائق طبية',
+  administrative: 'وثائق إدارية',
+  transfer: 'وثائق النقل',
+  judicial: 'وثائق قضائية',
+  consular: 'وثائق قنصلية',
+};
+
+export const stageLabels: Record<DocumentItem['stage'], string> = {
+  confirm: 'إثبات الوفاة',
+  declare: 'التصريح والتسجيل',
+  authorize: 'رخصة الدفن',
+  transfer: 'النقل',
+  judicial: 'المسطرة القضائية',
+  consular: 'المسطرة القنصلية',
+  burial: 'الدفن',
+};
