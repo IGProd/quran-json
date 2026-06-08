@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "دليل إجراءات الوفاة",
+    "slug": "wafat-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "wafat",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#F6F1E7",
+      "resizeMode": "contain"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "ma.wafat.guide"
+    },
+    "android": {
+      "package": "ma.wafat.guide",
+      "adaptiveIcon": {
+        "backgroundColor": "#F6F1E7"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": ["expo-localization", "expo-font"],
+    "extra": {
+      "supportsRTL": true,
+      "forcesRTL": true
+    }
+  }
+}
